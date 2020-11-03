@@ -39,6 +39,10 @@ h2{
     align-items: center;
 }
 
+#titreModele{
+    margin-bottom: 30px;
+}
+
 .col-xs-12{
     color: white;
 }
@@ -49,4 +53,12 @@ h2{
     height: 100%;
     text-align: center;
     color: var(--grey);
+}
+
+.material-icons{
+    font-size: 60px !important;
+}
+.element{
+    margin-bottom: 30px;
+    width: 50%;
 }
