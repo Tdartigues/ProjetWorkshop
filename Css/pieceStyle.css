@@ -18,12 +18,14 @@ html, body {
     height: 100%;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h3, h4, h5, h6 {
     color: var(--grey);
     font-weight: bold;
 }
-
-.row{
+h2{
+    text-align: center;
+}
+#Principal{
     margin: 0 auto;
     margin-top: 40px;
     align-items: center;
@@ -32,13 +34,19 @@ h1, h2, h3, h4, h5, h6 {
     
 }
 
-.col-xs-12{
-    
+#secondaire{
+    margin: 0 auto;
+    align-items: center;
 }
 
-.col-xs-6{
+.col-xs-12{
+    color: white;
+}
+
+#right{
     background-color: white !important;
     border-radius: 1.5%;
     height: 100%;
     text-align: center;
+    color: var(--grey);
 }
