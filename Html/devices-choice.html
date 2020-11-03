@@ -1,25 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/mixins.css">
+    <link rel="stylesheet" href="../Css/bootstrap.css">
+    <link rel="stylesheet" href="../Css/mixins.css">
+    <link rel="stylesheet" href="../Css/devices-choice.css">
     <title>Choix des appareils</title>
 </head>
+
 <body>
 
     <div class="devices-body">
         <div class="container">
             <nav>
-                <img src="Image/logo.png" alt="OptiEnergie">
+                <img src="../Image/logo.png" alt="OptiEnergie">
                 <h2>Vos équipements</h2>
                 <h1>Cuisine</h1>
             </nav>
+
+            <ul class="devices-list">
+                <li>
+                    <img src="../Image/009-hob.svg" alt="Plaques de cuisson">
+                    <p class="device-name">Plaques de cuisson</p>
+                    <input type="text" size="8" placeholder="Quantité" class="device-quantity">
+                    <label>
+                        Puissance :
+                        <input type="text" placeholder="Optionnel...">
+                    </label>
+
+                    <svg class="delete-device" xmlns="http://www.w3.org/2000/svg" width="22.958" height="22.957">
+                        <defs>
+                            <style>
+                                .a {
+                                    fill: none;
+                                    stroke: #c74210;
+                                    stroke-width: 6px
+                                }
+                            </style>
+                        </defs>
+                        <path class="a" d="M20.836 2.122L2.12 20.837M2.122 2.122l18.715 18.715" />
+                    </svg>
+                </li>
+
+                <li class="add-device">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40">
+                        <g fill="none" stroke="#404c57" stroke-width="4">
+                            <path d="M20 0v40M0 20h40" />
+                        </g>
+                    </svg>
+                    <p class="device-name">Ajouter un nouvel appareil</p>
+                    </label>
+                </li>
+            </ul>
+
+            <form action="" method="post">
+                <button type="submit" class="validate-devices">Valider</button>
+            </form>
+
         </div>
     </div>
 
 
 
 </body>
+
 </html>
