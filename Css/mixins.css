@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@200;300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --grey: #404C57;
+    --light-grey: #707070;
+    --blue: #3E619D;
+    --green: #649951;
+    --light-green: #94C63F;
+    --yellow: #FFA723;
+
+    --border-card: 2px solid #649951; 
+  }
+
+html, body {
+    font-family: 'Heebo', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--grey);
+    font-weight: bold;
+}
