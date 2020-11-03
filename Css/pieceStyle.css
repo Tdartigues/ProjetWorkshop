@@ -13,9 +13,32 @@
 
 html, body {
     font-family: 'Heebo', sans-serif;
+    background-color: #649951 !important;
+    overflow: hidden; 
+    height: 100%;
 }
 
 h1, h2, h3, h4, h5, h6 {
     color: var(--grey);
     font-weight: bold;
+}
+
+.row{
+    margin: 0 auto;
+    margin-top: 40px;
+    align-items: center;
+    width: 80%;
+    height: 80%;
+    
+}
+
+.col-xs-12{
+    
+}
+
+.col-xs-6{
+    background-color: white !important;
+    border-radius: 1.5%;
+    height: 100%;
+    text-align: center;
 }
