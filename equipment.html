@@ -21,29 +21,6 @@
             </nav>
 
             <ul class="devices-list">
-                <li>
-                    <img src="Image/009-hob.svg" alt="Plaques de cuisson">
-                    <p class="device-name">Plaques de cuisson</p>
-                    <input type="text" size="8" placeholder="Quantité" class="device-quantity">
-                    <label>
-                        Puissance :
-                        <input type="text" placeholder="Optionnel...">
-                    </label>
-
-                    <svg class="delete-device" xmlns="http://www.w3.org/2000/svg" width="22.958" height="22.957">
-                        <defs>
-                            <style>
-                                .a {
-                                    fill: none;
-                                    stroke: #c74210;
-                                    stroke-width: 6px
-                                }
-                            </style>
-                        </defs>
-                        <path class="a" d="M20.836 2.122L2.12 20.837M2.122 2.122l18.715 18.715" />
-                    </svg>
-                </li>
-
                 <li class="add-device">
                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40">
                         <g fill="none" stroke="#404c57" stroke-width="4">
@@ -69,20 +46,47 @@
 <script>
     $(document).ready(function () {
 
-        const url = "http://sc2adlo9657.universe.wf/houses";
-
+        // GET HOUSES AND ROOMS
         $.get('http://sc2adlo9657.universe.wf/houses', function (data) {
-            $('.add-device').html(data);
 
             // Exemple d'id d'un utilisateur connecté
             const userId = "d8e2d799-3703-4618-8a1c-43d855121d3c";
             const house = data.find(data => data.house.UserId === userId);
 
-            console.log(house);
+            // console.log(house);
         });
 
+
+        // GET ALL EQUIPMENT
+        $.get('http://sc2adlo9657.universe.wf/equipments/all', function (equipment) {
+            for (i = 0; i < equipment.length; i++) {
+                $(".add-device").before(`<li class="${equipment[i].id}"><img src="Image/009-hob.svg" alt="${equipment[i].name}"> <p class="device-name">${equipment[i].name}</p><input type="text" size="8" placeholder="Quantité" class="device-quantity"> <label> Consommation en Watts : <input type="text" placeholder="Optionnel..."> </label> <svg class="delete-device device${equipment[i].id}" xmlns="http://www.w3.org/2000/svg" width="22.958" height="22.957"> <defs> <style>.a{fill: none; stroke: #c74210; stroke-width: 6px}</style> </defs> <path class="a" d="M20.836 2.122L2.12 20.837M2.122 2.122l18.715 18.715"/> </svg> </li>`);
+            }
+        });
+
+
+        // DELETE AN EQUIPMENT
+        $(this).on('click', function () {
+            console.log("ok");
+
+            if ($(this).hasClass('.add-device')) {
+                console.log("clické");
+            }
+        });
+
+
+
+        //  POST NEW EQUIPMNENT
         $(".add-device").on('click', function () {
-            $(this).before("<li></li>")
+            $.post('http://sc2adlo9657.universe.wf/equipments/create',
+                {
+                    name: 'Nouvel équipement',
+                    watts: 10
+                }, function (data) {
+                    alert(data);
+                });
+            i = 0;
+            $(this).before(`<li><label>${i++} Nom de l\'appareil <input type="text"></label><input size="8" placeholder="Quantité" class="device-quantity" type="text"><label>Consommation en Watts : <input type="text" placeholder="Optionnel..."></label></li>`);
         });
 
     });
