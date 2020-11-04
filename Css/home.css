@@ -2,20 +2,25 @@ body {
 	background: url(../Image/fond.jpg) no-repeat center center fixed; 
 	height: 100%;
 	background-size: cover;
-	margin-top: 10px;
+	font-family: 'Heebo', sans-serif;
 }
 
 h1 {
-	font-family: 'Heebo', sans-serif;
 	color:#404c57;
-	font-size:3rem;
+    font-size: clamp(2.4rem, 8vw, 5rem);
+    line-height: clamp(2rem, 10vw, 14rem);
+    margin-left: 0.4rem;
 }
+
+/* .container {
+	margin: auto;
+} */
 
 .formco h2 {
 	text-align: center;
-	font-family: 'Heebo', sans-serif;
 	color:#404c57;
 	font-size:2rem;
+	margin-bottom: 4rem;
 }
 
 .underline {
@@ -24,26 +29,32 @@ h1 {
 
 
 text {
-	font-family: 'Heebo', sans-serif;
 	color:#404c57;
 	font-size:1em;
 }
 	
 
 .formco {
-	display: inline-block;
-	padding: 80px;
+	padding: clamp(20px, 15%, 80px);
 	border:solid 6px #94C63F;
 	border-radius: 25px;
 	background-color:white;
+	margin-top: 8vh;
+	margin-bottom: 5vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
 }
 
 .btn{
 	display:block;
-	margin:auto;
+	margin: 3rem auto;
 	background-color: #FFA723;
-	Color: #404C57;
+	color: #404C57;
 	border: none;
+	font-size: 1.2rem;
+	font-weight: bold;
+	padding: 0.5rem 4.2rem;
 }
 
 
