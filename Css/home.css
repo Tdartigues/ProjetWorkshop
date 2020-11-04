@@ -8,7 +8,14 @@ body {
 h1 {
 	font-family: 'Heebo', sans-serif;
 	color:#404c57;
-	font-size:3em;
+	font-size:3rem;
+}
+
+.formco h2 {
+	text-align: center;
+	font-family: 'Heebo', sans-serif;
+	color:#404c57;
+	font-size:2rem;
 }
 
 .underline {
@@ -23,15 +30,17 @@ text {
 }
 	
 
-form {
+.formco {
 	display: inline-block;
-	padding: 20px;
-	border:solid 10px #94C63F;
-	border-radius:40px;
+	padding: 80px;
+	border:solid 6px #94C63F;
+	border-radius: 25px;
 	background-color:white;
 }
 
 .btn{
+	display:block;
+	margin:auto;
 	background-color: #FFA723;
 	Color: #404C57;
 	border: none;
