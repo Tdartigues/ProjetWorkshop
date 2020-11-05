@@ -45,7 +45,9 @@ text {
 	flex-direction: column;
 	justify-content: space-around;
 }
-
+.formco .text-justify{
+	color:red
+}
 .btn{
 	display:block;
 	margin: 3rem auto;
@@ -57,4 +59,7 @@ text {
 	padding: 0.5rem 4.2rem;
 }
 
+.msg{
+	color:red;
+}
 
