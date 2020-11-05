@@ -122,3 +122,9 @@ form{
 #titreAjout{
     margin-top: 7px;
 }
+
+.btn-primary{
+    background-color: red !important;
+    border-color: red !important;
+    margin-left:90% ;
+}
