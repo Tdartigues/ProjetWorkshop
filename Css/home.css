@@ -37,7 +37,9 @@ text {
 	border-radius: 25px;
 	background-color:white;
 }
-
+.formco .text-justify{
+	color:red
+}
 .btn{
 	display:block;
 	margin:auto;
@@ -46,4 +48,7 @@ text {
 	border: none;
 }
 
+.msg{
+	color:red;
+}
 
