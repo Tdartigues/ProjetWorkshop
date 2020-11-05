@@ -146,14 +146,14 @@
 			console.log(token);
             $.ajax({
                 type:"POST",
-                url:"https://groupe13.etu.labo.loc:3000/",
+                url:"https://groupe13.etu.labo.loc:3000/user/fromToken",
                 data:{
                     token:token
                 },
                 success:function(data){
                     $.ajax({
                         type:"POST",
-                        url:"https://groupe13.etu.labo.loc:3000/",
+                        url:"https://groupe13.etu.labo.loc:3000/user/logout",,
                         data:{
                             id:data.id
                         },
