@@ -14,7 +14,8 @@
     <link rel="stylesheet" href="../Css/pieceStyle.css">
     <link rel="icon" href="Image/logo.png">
 
-
+    <button id="deconnexion" class="btn btn-primary">Déconnexion</button>
+    <div  id="notUser"> </div>
     <title>Choix des appareils</title>
 </head>
 <body>
@@ -22,6 +23,7 @@
   <div id="Principal" class="row">
     <div class="col-xs-12 col-md-6">
       <h2>Vos pièces</h2>
+	     
       <!--<div class="elementAjout"><a href="Création_pièces.html"><img src="Image/add.svg"  id="image" alt="Bureau"></i><h4 id="ajout">Ajout nouvelle piece</h4></a></div>
       <div class="card border-light mb-3" style="width: 20rem;">
         <img src="Image/004-kitchen.svg" id="image" class="card-img-top" alt="...">
@@ -138,6 +140,40 @@
         $(".col-sm-6").click(function(e){
 			window.location = "https://groupe13.etu.epsi-nantes.fr/equipment.html";
 		});
+		
+		$("#deconnexion").click(function (e) {
+            const token = localStorage.getItem('Session');
+			console.log(token);
+            $.ajax({
+                type:"POST",
+                url:"https://groupe13.etu.labo.loc:3000/user/fromToken",
+                data:{
+                    token:token
+                },
+                success:function(data){
+                    $.ajax({
+                        type:"POST",
+                        url:"https://groupe13.etu.labo.loc:3000/user/logout",
+                        data:{
+                            id:data.id
+                        },
+                        success:function(data){
+                            window.localStorage.clear();
+							window.location = "https://groupe13.etu.epsi-nantes.fr";
+							
+                        },
+                        error:function(xhr, status, error){
+                            e.preventDefault();
+                            $("#notUser").html("<p> Aucun utilisateur connecté</p>");
+                        }
+                    });
+                },
+                error:function(xhr, status, error){
+                    e.preventDefault();
+                    window.location = "https://groupe13.etu.epsi-nantes.fr";
+                }
+            });
+        });
     });
 	</script>
 </html>
