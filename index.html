@@ -60,7 +60,7 @@
 			if(password == vpassword){
 				$.ajax({
 					type:"POST",
-					url:"http://sc2adlo9657.universe.wf/user/register",
+					url:"https://groupe13.etu.labo.loc:3000/user/register",
 					data:{	
 						password:CryptoJS.SHA256(password).toString(),
 						email:email,
@@ -69,7 +69,7 @@
 					success:function(){
 						$.ajax({
 							type:"POST",
-							url:"http://sc2adlo9657.universe.wf/user/login",
+							url:"https://groupe13.etu.labo.loc:3000/user/login",
 							data:{	
 								password:CryptoJS.SHA256(password).toString(),
 								email:email,
