@@ -52,7 +52,7 @@
     $(document).ready(function () {
 
         // GET HOUSES AND ROOMS
-        $.get('http://groupe13.etu.labo.loc:3000/houses', function (data) {
+        $.get('https://groupe13.etu.labo.loc:3000/houses', function (data) {
 
             // Exemple d'id d'un utilisateur connecté
             const userId = "d8e2d799-3703-4618-8a1c-43d855121d3c";
@@ -63,7 +63,7 @@
 
 
         // GET ALL EQUIPMENT
-        $.get('http://groupe13.etu.labo.loc:3000/equipments/all', function (equipment) {
+        $.get('https://groupe13.etu.labo.loc:3000/equipments/all', function (equipment) {
 
             for (i = 0; i < equipment.length; i++) {
                 if (equipment[i].watts) {
@@ -89,7 +89,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "http://groupe13.etu.labo.loc:3000/equipments/delete",
+                url: "https://groupe13.etu.labo.loc:3000/equipments/delete",
                 data: {
                     id: id,
                 },
@@ -103,13 +103,13 @@
 
         //  POST NEW EQUIPMNENT
         $(".add-device").on('click', function () {
-            $.post('http://groupe13.etu.labo.loc:3000/equipments/create',
+            $.post('https://groupe13.etu.labo.loc:3000/equipments/create',
                 {
                     name: 'Nouvel appareil',
                     room_id: '842afc39-9943-4355-b1ca-dc87a66af3a4',
                 });
 
-            $.get('http://groupe13.etu.labo.loc:3000/equipments/last', function (last) {
+            $.get('https://groupe13.etu.labo.loc:3000/equipments/last', function (last) {
                 id = last.id;
 
                 $(".add-device").before(`<li class="equipment equipment-${id}"><label> Nom de l\'appareil <input class="new-name" type="text"></label><input size="8" placeholder="Quantité" class="device-quantity" type="text"><label>Consommation en Watts : <input type="text" class="device-watts" placeholder="Optionnel..."></label><svg class="delete-device" id="${id}" xmlns="http://www.w3.org/2000/svg" width="22.958" height="22.957"> <defs> <style>.a{fill: none; stroke: #c74210; stroke-width: 6px}</style> </defs> <path class="a" d="M20.836 2.122L2.12 20.837M2.122 2.122l18.715 18.715"/> </svg></li>`);
@@ -140,7 +140,7 @@
                     console.log(eq_name);
                 }
 
-                $.post('http://groupe13.etu.labo.loc:3000/equipments/update',
+                $.post('https://groupe13.etu.labo.loc:3000/equipments/update',
                     {
                         name: eq_name,
                         equipment_id: eq_id,
@@ -170,7 +170,7 @@
                     console.log(eq_name);
                 }
 
-                $.post('http://groupe13.etu.labo.loc:3000/equipments/update',
+                $.post('https://groupe13.etu.labo.loc:3000/equipments/update',
                     {
                         name: eq_name,
                         equipment_id: eq_id,
@@ -199,7 +199,7 @@
                     console.log(eq_name);
                 }
 
-                $.post('http://groupe13.etu.labo.loc:3000/equipments/update',
+                $.post('https://groupe13.etu.labo.loc:3000/equipments/update',
                     {
                         name: eq_name,
                         equipment_id: eq_id,
