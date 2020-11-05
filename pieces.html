@@ -145,14 +145,14 @@
 			console.log(token);
             $.ajax({
                 type:"POST",
-                url:"http://sc2adlo9657.universe.wf/user/fromToken",
+                url:"https://groupe13.etu.labo.loc:3000/",
                 data:{
                     token:token
                 },
                 success:function(data){
                     $.ajax({
                         type:"POST",
-                        url:"http://sc2adlo9657.universe.wf/user/logout",
+                        url:"https://groupe13.etu.labo.loc:3000/",
                         data:{
                             id:data.id
                         },
