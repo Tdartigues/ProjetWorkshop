@@ -23,28 +23,35 @@
 
             <ul class="solutions-list">
                 <li class="a"><img src="Image/009-hob.svg" class="icon-solution" alt="a">
-                    <p class="device-name">Nom</p><a>En savoir plus sur ces équipements...</a>
+                    <p class="device-name">Lave-linge</p><a>En savoir plus sur ces équipements...</a>
                     <div class="solution">
                         <div>
-                            <p class="solution-conso">Consommation : 130W</p>
-                            <img src="Image/009-hob.svg" alt="">
-                            <p class="solution-name">Four encastré</p>
-                            <p class="solution-ref">0255F-035</p>
-                            <p class="solution-brand">Tefal</p>
+                            <p class="solution-conso">Consommation : 137kWh/an</p>
+                            <a href="https://www.idealo.fr/prix/200466728/bosch-wan28238ff.html">
+                                <img src="Image/bosch.jpg" alt="">
+                            </a>
+                            <p class="solution-name">Bosh</p>
+                            <p class="solution-ref">WAN28238FF</p>
+
                         </div>
                         <div>
-                            <p class="solution-conso">Consommation : 150W</p>
-                            <img src="Image/009-hob.svg" alt="">
-                            <p class="solution-name">Four encastré</p>
-                            <p class="solution-ref">0255F-035</p>
-                            <p class="solution-brand">Tefal</p>
+                            <p class="solution-conso">Consommation : 196kWh/an</p>
+                            <a
+                                href="https://www.cdiscount.com/electromenager/lavage-sechage/candy-gvs118t301-lave-linge-frontal-8-kg-1100-tour/f-1100104-can8016361940376.html?idOffre=493133221#pres">
+                                <img src="Image/candy.jpg" alt="">
+                            </a>
+                            <p class="solution-name">Candy</p>
+                            <p class="solution-ref">GVS118T301</p>
+
                         </div>
                         <div>
-                            <p class="solution-conso">Consommation : 80W</p>
-                            <img src="Image/009-hob.svg" alt="">
-                            <p class="solution-name">Four encastré</p>
-                            <p class="solution-ref">0255F-035</p>
-                            <p class="solution-brand">Tefal</p>
+                            <p class="solution-conso">Consommation : 150kWh/an</p>
+                            <a href="https://www.boulanger.com/ref/8006712">
+                                <img src="Image/canvas.png" alt="">
+                            </a>
+                            <p class="solution-name">EssentielB</p>
+                            <p class="solution-ref">ELT612-5b</p>
+
                         </div>
                     </div>
                 </li>
@@ -77,9 +84,10 @@
 
 
         // GET ALL EQUIPMENT
-        $.get('http://sc2adlo9657.universe.wf/equipments/all', function (equipment) {
-            for (i = 0; i < equipment.length; i++) {
-                $(".solutions-list").append(`<li class="${equipment[i].id}"><img src="Image/009-hob.svg" class="icon-solution" alt="${equipment[i].name}"> <p class="device-name">${equipment[i].name}</p><a href="/">En savoir plus sur ces équipements...</a><div class="solution"><img src="Image/009-hob.svg" alt="${equipment[i].name}"><img src="Image/009-hob.svg" alt="${equipment[i].name}"><img src="Image/009-hob.svg" alt="${equipment[i].name}"></div></li>`);
+        $.get('http://sc2adlo9657.universe.wf/suggestions', function (suggestions) {
+
+            for (i = 0; i < suggestions.length; i++) {
+                $(".add-device").before(`<li class="suggestions suggestions-${suggestions[i].id}" value="${suggestions[i].id}"><img src="Image/009-hob.svg" alt="${suggestions[i].name}"> <p class="device-name">${suggestions[i].name}</p><input type="text" size="8" ${quantity} class="device-quantity"> <label> Consommation en Watts : <input type="text" class="device-watts" ${watts}> </label> <svg class="delete-device" id="${suggestions[i].id}" xmlns="http://www.w3.org/2000/svg" width="22.958" height="22.957"> <defs> <style>.a{fill: none; stroke: #c74210; stroke-width: 6px}</style> </defs> <path class="a" d="M20.836 2.122L2.12 20.837M2.122 2.122l18.715 18.715"/> </svg> </li>`);
             }
         });
     });
