@@ -31,8 +31,10 @@
                     </label>
                 </li>
             </ul>
-            <button type="submit" class="validate-devices">Valider</button>
 
+            <form action="" method="post">
+                <button type="submit" class="validate-devices">Valider</button>
+            </form>
             <div class="buttons">
                 <form action="/pieces.html" method="post">
                     <button type="submit" class="go-pieces">Ajouter une pièce</button>
@@ -50,17 +52,6 @@
 </body>
 <script>
     $(document).ready(function () {
-
-        // GET HOUSES AND ROOMS
-        $.get('https://groupe13.etu.labo.loc:3000/houses', function (data) {
-
-            // Exemple d'id d'un utilisateur connecté
-            const userId = "d8e2d799-3703-4618-8a1c-43d855121d3c";
-            const house = data.find(data => data.house.UserId === userId);
-
-            // console.log(house);
-        });
-
 
         // GET ALL EQUIPMENT
         $.get('https://groupe13.etu.labo.loc:3000/equipments/all', function (equipment) {
@@ -119,8 +110,7 @@
 
         //  KEEP CHANGES LEAVING THIS PAGE
 
-        $(".validate-devices").on('click', function (e) {
-            e.preventDefault();
+        $(".validate-devices").on('click', function () {
             let equipment = $(".equipment");
 
             for (i = 0; i < equipment.length; i++) {
