@@ -27,7 +27,7 @@
                             <path d="M20 0v40M0 20h40" />
                         </g>
                     </svg>
-                    <p class="device-name">Ajouter un nouvel appareil</p>
+                    <p class="add-device-name">Ajouter un nouvel appareil</p>
                     </label>
                 </li>
             </ul>
@@ -83,7 +83,7 @@
 
         // DELETE AN EQUIPMENT
         $('body').on('click', '.delete-device', function () {
-            var id = $(this).attr('id');
+            let id = $(this).attr('id');
 
             $.ajax({
                 type: "POST",
@@ -108,7 +108,7 @@
                 });
 
             $.get('http://sc2adlo9657.universe.wf/equipments/last', function (last) {
-                id = last[0].id;
+                id = last.id;
 
                 $(".add-device").before(`<li class="equipment equipment-${id}"><label> Nom de l\'appareil <input class="new-name" type="text"></label><input size="8" placeholder="Quantité" class="device-quantity" type="text"><label>Consommation en Watts : <input type="text" class="device-watts" placeholder="Optionnel..."></label><svg class="delete-device" id="${id}" xmlns="http://www.w3.org/2000/svg" width="22.958" height="22.957"> <defs> <style>.a{fill: none; stroke: #c74210; stroke-width: 6px}</style> </defs> <path class="a" d="M20.836 2.122L2.12 20.837M2.122 2.122l18.715 18.715"/> </svg></li>`);
             });
@@ -123,24 +123,22 @@
 
             for (i = 0; i < equipment.length; i++) {
 
-                let id = equipment[i].lastElementChild.id;
-                let quantity = $(`equipment-${id}`).find(".device-quantity").val();
-                let watts = $(`.equipment-${id}`).find(".device-watts").val();
-
-                if ($(`.equipment-${id}`).find(".new-name").val()) {
-                    let name = $(`.equipment-${id}`).find(".new-name").val()
-                    console.log(name);
+                let eq_id = equipment[i].lastElementChild.id;
+                let quantity = $(`equipment-${eq_id}`).find(".device-quantity").val();
+                let watts = $(`.equipment-${eq_id}`).find(".device-watts").val();
+                let eq_name;
+                if ($(`.equipment-${eq_id}`).find(".new-name").val()) {
+                    eq_name = $(`.equipment-${eq_id}`).find(".new-name").val()
+                    console.log(eq_name);
                 } else {
-                    let name = $(`.equipment-${id}`).find(".device-name").val();
-                    console.log(name);
+                    eq_name = $(`.equipment-${eq_id}`).find(".device-name").text();
+                    console.log(eq_name);
                 }
-
-                console.log("ok");
 
                 $.post('http://sc2adlo9657.universe.wf/equipments/update',
                     {
-                        name: "Nouvel appareil",
-                        equipment_id: id,
+                        name: eq_name,
+                        equipment_id: eq_id,
                         watts: watts,
                         quantity: quantity
                     })
