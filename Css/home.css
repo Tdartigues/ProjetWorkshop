@@ -12,10 +12,6 @@ h1 {
     margin-left: 0.4rem;
 }
 
-/* .container {
-	margin: auto;
-} */
-
 .formco h2 {
 	text-align: center;
 	color:#404c57;
@@ -35,7 +31,7 @@ text {
 	
 
 .formco {
-	padding: clamp(20px, 15%, 80px);
+	padding: clamp(20px, 7vh, 80px) clamp(20px, 15%, 80px);
 	border:solid 6px #94C63F;
 	border-radius: 25px;
 	background-color:white;
