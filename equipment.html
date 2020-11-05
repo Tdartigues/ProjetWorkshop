@@ -35,7 +35,7 @@
                 <form action="/pieces.html" method="post">
                     <button type="submit" class="go-pieces">Ajouter une pièce</button>
                 </form>
-                <form action="/solutions.html" method="post">
+                <form action="" method="post">
                     <button type="submit" class="validate-devices">Valider</button>
                 </form>
             </div>
@@ -62,25 +62,81 @@
 
         // GET ALL EQUIPMENT
         $.get('http://sc2adlo9657.universe.wf/equipments/all', function (equipment) {
+
             for (i = 0; i < equipment.length; i++) {
-                $(".add-device").before(`<li class="${equipment[i].id}"><img src="Image/009-hob.svg" alt="${equipment[i].name}"> <p class="device-name">${equipment[i].name}</p><input type="text" size="8" placeholder="Quantité" class="device-quantity"> <label> Consommation en Watts : <input type="text" placeholder="Optionnel..."> </label> <svg class="delete-device device${equipment[i].id}" xmlns="http://www.w3.org/2000/svg" width="22.958" height="22.957"> <defs> <style>.a{fill: none; stroke: #c74210; stroke-width: 6px}</style> </defs> <path class="a" d="M20.836 2.122L2.12 20.837M2.122 2.122l18.715 18.715"/> </svg> </li>`);
+                if (equipment[i].watts) {
+                    watts = `value=${equipment[i].watts}`;
+                } else {
+                    watts = 'placeholder="Optionnel..."';
+                }
+
+                $(".add-device").before(`<li class="equipment equipment-${equipment[i].id}"><img src="Image/009-hob.svg" alt="${equipment[i].name}"> <p class="device-name">${equipment[i].name}</p><input type="text" size="8" placeholder="Quantité" class="device-quantity"> <label> Consommation en Watts : <input type="text" ${watts}> </label> <svg class="delete-device" id="${equipment[i].id}" xmlns="http://www.w3.org/2000/svg" width="22.958" height="22.957"> <defs> <style>.a{fill: none; stroke: #c74210; stroke-width: 6px}</style> </defs> <path class="a" d="M20.836 2.122L2.12 20.837M2.122 2.122l18.715 18.715"/> </svg> </li>`);
             }
         });
 
 
         // DELETE AN EQUIPMENT
-        $(this).on('click', function () {
-            console.log("ok");
+        $('body').on('click', '.delete-device', function () {
+            var id = $(this).attr('id');
 
-            if ($(this).hasClass('.add-device')) {
-                console.log("clické");
-            }
+            $.ajax({
+                type: "POST",
+                url: "http://sc2adlo9657.universe.wf/equipments/delete",
+                data: {
+                    id: id,
+                },
+                success:
+                    function () {
+                        $(`.equipment-${id}`).hide();
+                    }
+            });
         });
-
 
 
         //  POST NEW EQUIPMNENT
         $(".add-device").on('click', function () {
+            $.post('http://sc2adlo9657.universe.wf/equipments/create',
+                {
+                    name: 'Nouvel appareil',
+                    room_id: '842afc39-9943-4355-b1ca-dc87a66af3a4',
+                });
+
+            $.get('http://sc2adlo9657.universe.wf/equipments/last', function (last) {
+                id = last[0].id;
+                console.log(last[0].id);
+
+                $(".add-device").before(`<li class="equipment equipment-${id}"><label> Nom de l\'appareil <input class="new-name" type="text"></label><input size="8" placeholder="Quantité" class="device-quantity" type="text"><label>Consommation en Watts : <input type="text" placeholder="Optionnel..."></label><svg class="delete-device" id="${id}" xmlns="http://www.w3.org/2000/svg" width="22.958" height="22.957"> <defs> <style>.a{fill: none; stroke: #c74210; stroke-width: 6px}</style> </defs> <path class="a" d="M20.836 2.122L2.12 20.837M2.122 2.122l18.715 18.715"/> </svg></li>`);
+            });
+
+            e = i++;
+
+
+        });
+
+
+
+        //  KEEP CHANGES LEAVING THIS PAGE
+        $(".validate-devices").on('click', function (e) {
+            e.preventDefault();
+            let equipment = $(".equipment");
+            let deviceName = $(".device-name").val();
+            let id = $(".delete-device").attr('id');
+
+            console.log(equipment);
+            console.log(deviceName);
+
+            equipment.each(
+                $.post('http://sc2adlo9657.universe.wf/equipments/update',
+                    {
+                        name: deviceName,
+                        id: id,
+                        room_id: '842afc39-9943-4355-b1ca-dc87a66af3a4',
+                        watts: 10
+                    })
+            );
+        });
+
+        $(".go-pieces").on('click', function () {
             $.post('http://sc2adlo9657.universe.wf/equipments/create',
                 {
                     name: 'Nouvel équipement',
@@ -88,11 +144,25 @@
                 }, function (data) {
                     alert(data);
                 });
-            i = 0;
-            $(this).before(`<li><label>${i++} Nom de l\'appareil <input type="text"></label><input size="8" placeholder="Quantité" class="device-quantity" type="text"><label>Consommation en Watts : <input type="text" placeholder="Optionnel..."></label></li>`);
         });
 
+        $(window).on('beforeunload', function () {
+            let equipment = $(".equipment");
+            let deviceName = $(".device-name").val();
+            console.log(equipment);
+            console.log(deviceName);
+
+            newDevice.each(
+                $.post('http://sc2adlo9657.universe.wf/equipments/update',
+                    {
+                        name: 'New equipment',
+                        room_id: '842afc39-9943-4355-b1ca-dc87a66af3a4',
+                        watts: 10
+                    })
+            );
+        });
     });
+
 </script>
 
 </html>
