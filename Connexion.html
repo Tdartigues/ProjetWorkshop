@@ -40,9 +40,7 @@
 					},
 					success:function(data){
 						localStorage.setItem('Session',data.token);
-						localStorage.setItem('Session',data.getInfoUser.id);
-						consol.log(data.getInfoUser.id);
-						window.location = "file:///D:/GitHub/ProjetWorkshop/ProjetWorkshop/pieces.html";
+						window.location = "https://groupe13.etu.epsi-nantes.fr/pieces.html";
 					},
 					error:function(xhr, status, error){
 						e.preventDefault();
@@ -51,6 +49,7 @@
 				});
 			}
 			else{
+				e.preventDefault();
 				$("#message").html("<p> Le mail ou le mot de passe doivent être remplie </p>");
 			}
         });

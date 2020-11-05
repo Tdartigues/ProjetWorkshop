@@ -36,8 +36,8 @@
 										<input class="form-control" type="password" name="vpassword" id="vpassword" required>
 									</div>
 									<div class="msg" id="message"> </div>
-									<button id="connexion" class="btn btn-primary">Commencer</button>
 								</form>
+								<button id="connexion" class="btn btn-primary">Commencer</button>
 								<p> Déjà membre? Connectez-vous à votre espace <a title="" href="Connexion.html">ici</a></p>	
 							</div>
 					</div>
@@ -50,16 +50,12 @@
     $(document).ready(function(e){ 
         //  POST NEW USER
         $("#connexion").click(function(e){
-			//e.preventDefault();
+			e.preventDefault();
 			var email  = $("#email").val().trim();
 			var password = $("#password").val().trim();
 			var vpassword = $("#vpassword").val().trim();
-			console.log(email);	
-			console.log(password);	
-			console.log(vpassword);
 	
 			if(password == vpassword){
-				console.log("ok");
 				$.ajax({
 					type:"POST",
 					url:"http://sc2adlo9657.universe.wf/user/register",
@@ -78,8 +74,7 @@
 							},
 							success:function(data){
 								localStorage.setItem('Session',data.token);
-								localStorage.setItem('Session',data.getInfoUser.id);
-								window.location = "file:///D:/GitHub/ProjetWorkshop/ProjetWorkshop/pieces.html";
+								window.location = "https://groupe13.etu.epsi-nantes.fr/pieces.html";
 							},
 						});
 					},
